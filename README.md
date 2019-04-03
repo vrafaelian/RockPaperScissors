@@ -3,9 +3,9 @@
 Game was made as a final semester 1 project for the Advanced Topics Computer Science course at Immaculate Heart High School.
 
 ## Rules
-Allow transitions to finish before interacting with program. 
-Click directly on text and images to progress.
-Game will purposefully quit if player chooses same item as computer.
+- Allow transitions to finish before interacting with program. 
+- Click directly on text and images to progress.
+- Game will purposefully quit if player chooses same item as computer.
 
 ## Design Document
 **3-5 sentences summarising game concept, gameplay and win/loss conditions.**
