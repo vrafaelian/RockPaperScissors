@@ -153,7 +153,7 @@ public class RockPaperScissorsv4 extends Application {
     Image image5 = new Image(new FileInputStream("comppaper.png"));
     ImageView comppaper = new ImageView(image5);
     comppaper.setX(310);
-    comppaper.setY(100);
+    comppaper.setY(120);
     comppaper.setFitHeight(300);
     comppaper.setFitWidth(150);
     comppaper.setPreserveRatio(true);
@@ -233,31 +233,19 @@ public class RockPaperScissorsv4 extends Application {
           chooserock = true;
 
           if (compchooserock) {
-            System.out.println("Tie!");
-            youtie1 = true;
-            tie.setOpacity(1.0);
-            comprock.setOpacity(1.0);
 
-            FadeTransition compRockFade = new FadeTransition(Duration.millis(2000));
-            compRockFade.setNode(comprock);
-            compRockFade.setFromValue(1.0);
-            compRockFade.setToValue(0.0);
-            compRockFade.setCycleCount(1);
-            compRockFade.setAutoReverse(false);
-            compRockFade.play();
+            // comprock.setOpacity(1.0);
+            //
+            // FadeTransition compRockFade = new FadeTransition(Duration.millis(2000));
+            // compRockFade.setNode(comprock);
+            // compRockFade.setFromValue(1.0);
+            // compRockFade.setToValue(0.0);
+            // compRockFade.setCycleCount(1);
+            // compRockFade.setAutoReverse(false);
+            // compRockFade.play();
+            compChoseRock(comprock);
 
-            FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-            tieFade.setNode(tie);
-            tieFade.setFromValue(1.0);
-            tieFade.setToValue(0.0);
-            tieFade.setCycleCount(1);
-            tieFade.setAutoReverse(false);
-            tieFade.play();
-
-            tieFade.setOnFinished(event -> {
-              System.out.println("Game Status: Offline");
-              Platform.exit();
-            });
+            onTie();
 
 
           } else if (compchoosescissors) {
@@ -265,16 +253,8 @@ public class RockPaperScissorsv4 extends Application {
             youwin1 = true;
             win = win + 1;
             greatChoice1.setOpacity(1.0);
-            compscissors.setOpacity(1.0);
 
-            FadeTransition compScissorsFade = new FadeTransition(Duration.millis(2000));
-            compScissorsFade.setNode(compscissors);
-            compScissorsFade.setFromValue(1.0);
-            compScissorsFade.setToValue(0.0);
-            compScissorsFade.setCycleCount(1);
-            compScissorsFade.setAutoReverse(false);
-            compScissorsFade.play();
-
+            compChoseScissors(compscissors);
 
             FadeTransition greatChoiceFade = new FadeTransition(Duration.millis(3000));
             greatChoiceFade.setNode(greatChoice1);
@@ -296,15 +276,8 @@ public class RockPaperScissorsv4 extends Application {
             lose = lose + 1;
             System.out.println(lose);
             ouch.setOpacity(1.0);
-            comppaper.setOpacity(1.0);
 
-            FadeTransition compPaperFade = new FadeTransition(Duration.millis(2000));
-            compPaperFade.setNode(comppaper);
-            compPaperFade.setFromValue(1.0);
-            compPaperFade.setToValue(0.0);
-            compPaperFade.setCycleCount(1);
-            compPaperFade.setAutoReverse(false);
-            compPaperFade.play();
+            compChosePaper(comppaper);
 
             FadeTransition ouchFade = new FadeTransition(Duration.millis(3000));
             ouchFade.setNode(ouch);
@@ -323,47 +296,8 @@ public class RockPaperScissorsv4 extends Application {
           }
 
           checkLosses(rock, paper, scissors);
-          if (win == 1) {
-            System.out.println("won 1");
-            win1.setOpacity(1.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 2) {
-            System.out.println("won 2");
-            win1.setOpacity(0.0);
-            win2.setOpacity(1.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 3) {
-            System.out.println("won 3");
-            win1.setOpacity(0.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(1.0);
-            youwon = true;
-            System.out.println(win);
-            rock.setOpacity(0.0);
-            paper.setOpacity(0.0);
-            scissors.setOpacity(0.0);
-            greatChoice1.setOpacity(0.0);
-            ouch.setOpacity(0.0);
-            pickOne.setOpacity(0.0);
-            nextRound.setOpacity(0.0);
+          checkWins(rock, paper, scissors);
 
-            youWon.setOpacity(1.0);
-            FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-            youWinFade.setNode(youWon);
-            youWinFade.setFromValue(1.0);
-            youWinFade.setToValue(0.0);
-            youWinFade.setCycleCount(1);
-            youWinFade.setAutoReverse(false);
-            youWinFade.play();
-
-            youWinFade.setOnFinished(event -> {
-              System.out.println("You're done.");
-              Platform.exit();
-            });
-          }
         }
 
       };
@@ -383,32 +317,10 @@ public class RockPaperScissorsv4 extends Application {
           choosepaper = true;
 
           if (compchoosepaper) {
-            System.out.println("Tie!");
-            youtie1 = true;
-            comppaper.setOpacity(1.0);
 
-            FadeTransition compPaperFade = new FadeTransition(Duration.millis(2000));
-            compPaperFade.setNode(comppaper);
-            compPaperFade.setFromValue(1.0);
-            compPaperFade.setToValue(0.0);
-            compPaperFade.setCycleCount(1);
-            compPaperFade.setAutoReverse(false);
-            compPaperFade.play();
+            compChosePaper(comppaper);
 
-            tie.setOpacity(1.0);
-
-            FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-            tieFade.setNode(tie);
-            tieFade.setFromValue(1.0);
-            tieFade.setToValue(0.0);
-            tieFade.setCycleCount(1);
-            tieFade.setAutoReverse(false);
-            tieFade.play();
-
-            tieFade.setOnFinished(event -> {
-              System.out.println("Game Status: Offline");
-              Platform.exit();
-            });
+            onTie();
 
           } else if (compchooserock) {
             System.out.println("You win one!");
@@ -416,15 +328,8 @@ public class RockPaperScissorsv4 extends Application {
             win = win + 1;
             System.out.println(win);
             greatChoice1.setOpacity(1.0);
-            comprock.setOpacity(1.0);
 
-            FadeTransition compRockFade = new FadeTransition(Duration.millis(2000));
-            compRockFade.setNode(comprock);
-            compRockFade.setFromValue(1.0);
-            compRockFade.setToValue(0.0);
-            compRockFade.setCycleCount(1);
-            compRockFade.setAutoReverse(false);
-            compRockFade.play();
+            compChoseRock(comprock);
 
             FadeTransition greatChoiceFade = new FadeTransition(Duration.millis(3000));
             greatChoiceFade.setNode(greatChoice1);
@@ -446,15 +351,8 @@ public class RockPaperScissorsv4 extends Application {
             lose = lose + 1;
             System.out.println(lose);
             ouch.setOpacity(1.0);
-            compscissors.setOpacity(1.0);
 
-            FadeTransition compScissorsFade = new FadeTransition(Duration.millis(2000));
-            compScissorsFade.setNode(compscissors);
-            compScissorsFade.setFromValue(1.0);
-            compScissorsFade.setToValue(0.0);
-            compScissorsFade.setCycleCount(1);
-            compScissorsFade.setAutoReverse(false);
-            compScissorsFade.play();
+            compChoseScissors(compscissors);
 
             FadeTransition ouchFade = new FadeTransition(Duration.millis(3000));
             ouchFade.setNode(ouch);
@@ -472,51 +370,12 @@ public class RockPaperScissorsv4 extends Application {
 
           }
 
-
           checkLosses(rock, paper, scissors);
-          if (win == 1) {
-            System.out.println("won 1");
-            win1.setOpacity(1.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 2) {
-            System.out.println("won 2");
-            win1.setOpacity(0.0);
-            win2.setOpacity(1.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 3) {
-            System.out.println("won 3");
-            win1.setOpacity(0.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(1.0);
-            youwon = true;
-            System.out.println(win);
-            rock.setOpacity(0.0);
-            paper.setOpacity(0.0);
-            scissors.setOpacity(0.0);
-            greatChoice1.setOpacity(0.0);
-            ouch.setOpacity(0.0);
-            pickOne.setOpacity(0.0);
-            nextRound.setOpacity(0.0);
+          checkWins(rock, paper, scissors);
 
-            youWon.setOpacity(1.0);
-            FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-            youWinFade.setNode(youWon);
-            youWinFade.setFromValue(1.0);
-            youWinFade.setToValue(0.0);
-            youWinFade.setCycleCount(1);
-            youWinFade.setAutoReverse(false);
-            youWinFade.play();
-
-            youWinFade.setOnFinished(event -> {
-              System.out.println("You're done.");
-              Platform.exit();
-            });
-          }
         }
       };
+
       paper.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler2);
       paper.removeEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler2);
 
@@ -532,31 +391,10 @@ public class RockPaperScissorsv4 extends Application {
           choosescissors = true;
 
           if (compchoosescissors) {
-            System.out.println("Tie!");
-            youtie1 = true;
-            tie.setOpacity(1.0);
-            compscissors.setOpacity(1.0);
 
-            FadeTransition compScissorsFade = new FadeTransition(Duration.millis(2000));
-            compScissorsFade.setNode(compscissors);
-            compScissorsFade.setFromValue(1.0);
-            compScissorsFade.setToValue(0.0);
-            compScissorsFade.setCycleCount(1);
-            compScissorsFade.setAutoReverse(false);
-            compScissorsFade.play();
+            compChoseScissors(compscissors);
 
-            FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-            tieFade.setNode(tie);
-            tieFade.setFromValue(1.0);
-            tieFade.setToValue(0.0);
-            tieFade.setCycleCount(1);
-            tieFade.setAutoReverse(false);
-            tieFade.play();
-
-            tieFade.setOnFinished(event -> {
-              System.out.println("Game Status: Offline");
-              Platform.exit();
-            });
+            onTie();
 
           } else if (compchoosepaper) {
             System.out.println("You win one!");
@@ -564,15 +402,8 @@ public class RockPaperScissorsv4 extends Application {
             win = win + 1;
             System.out.println(win);
             greatChoice1.setOpacity(1.0);
-            comppaper.setOpacity(1.0);
 
-            FadeTransition compPaperFade = new FadeTransition(Duration.millis(2000));
-            compPaperFade.setNode(comppaper);
-            compPaperFade.setFromValue(1.0);
-            compPaperFade.setToValue(0.0);
-            compPaperFade.setCycleCount(1);
-            compPaperFade.setAutoReverse(false);
-            compPaperFade.play();
+            compChosePaper(comppaper);
 
             FadeTransition greatChoiceFade = new FadeTransition(Duration.millis(3000));
             greatChoiceFade.setNode(greatChoice1);
@@ -594,15 +425,8 @@ public class RockPaperScissorsv4 extends Application {
             lose = lose + 1;
             System.out.println(lose);
             ouch.setOpacity(1.0);
-            comprock.setOpacity(1.0);
 
-            FadeTransition compRockFade = new FadeTransition(Duration.millis(2000));
-            compRockFade.setNode(comprock);
-            compRockFade.setFromValue(1.0);
-            compRockFade.setToValue(0.0);
-            compRockFade.setCycleCount(1);
-            compRockFade.setAutoReverse(false);
-            compRockFade.play();
+            compChoseRock(comprock);
 
             FadeTransition ouchFade = new FadeTransition(Duration.millis(3000));
             ouchFade.setNode(ouch);
@@ -621,48 +445,8 @@ public class RockPaperScissorsv4 extends Application {
           }
 
           checkLosses(rock, paper, scissors);
-          if (win == 1) {
-            System.out.println("won 1");
-            win1.setOpacity(1.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 2) {
-            System.out.println("won 2");
-            win1.setOpacity(0.0);
-            win2.setOpacity(1.0);
-            win3.setOpacity(0.0);
-          }
-          if (win == 3) {
-            System.out.println("won 3");
-            win1.setOpacity(0.0);
-            win2.setOpacity(0.0);
-            win3.setOpacity(1.0);
-            youwon = true;
-            System.out.println(win);
-            rock.setOpacity(0.0);
-            paper.setOpacity(0.0);
-            scissors.setOpacity(0.0);
-            greatChoice1.setOpacity(0.0);
-            ouch.setOpacity(0.0);
-            pickOne.setOpacity(0.0);
-            nextRound.setOpacity(0.0);
+          checkWins(rock, paper, scissors);
 
-
-            youWon.setOpacity(1.0);
-            FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-            youWinFade.setNode(youWon);
-            youWinFade.setFromValue(1.0);
-            youWinFade.setToValue(0.0);
-            youWinFade.setCycleCount(1);
-            youWinFade.setAutoReverse(false);
-            youWinFade.play();
-
-            youWinFade.setOnFinished(event -> {
-              System.out.println("You're done.");
-              Platform.exit();
-            });
-          }
         }
       };
       scissors.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler3);
@@ -709,23 +493,8 @@ public class RockPaperScissorsv4 extends Application {
 
 
             if (compchooserock) {
-              System.out.println("Tie!");
-              youtie1 = true;
 
-              tie.setOpacity(1.0);
-
-              FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-              tieFade.setNode(tie);
-              tieFade.setFromValue(1.0);
-              tieFade.setToValue(0.0);
-              tieFade.setCycleCount(1);
-              tieFade.setAutoReverse(false);
-              tieFade.play();
-
-              tieFade.setOnFinished(event -> {
-                System.out.println("Game Status: Offline");
-                Platform.exit();
-              });
+              onTie();
 
             } else if (compchoosescissors) {
               System.out.println("You win one!");
@@ -742,47 +511,7 @@ public class RockPaperScissorsv4 extends Application {
             }
 
             checkLosses(rock, paper, scissors);
-            if (win == 1) {
-              System.out.println("won 1");
-              win1.setOpacity(1.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 2) {
-              System.out.println("won 2");
-              win1.setOpacity(0.0);
-              win2.setOpacity(1.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 3) {
-              System.out.println("won 3");
-              win1.setOpacity(0.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(1.0);
-              youwon = true;
-              System.out.println(win);
-              rock.setOpacity(0.0);
-              paper.setOpacity(0.0);
-              scissors.setOpacity(0.0);
-              greatChoice1.setOpacity(0.0);
-              ouch.setOpacity(0.0);
-              pickOne.setOpacity(0.0);
-              nextRound.setOpacity(0.0);
-
-              youWon.setOpacity(1.0);
-              FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-              youWinFade.setNode(youWon);
-              youWinFade.setFromValue(1.0);
-              youWinFade.setToValue(0.0);
-              youWinFade.setCycleCount(1);
-              youWinFade.setAutoReverse(false);
-              youWinFade.play();
-
-              youWinFade.setOnFinished(event -> {
-                System.out.println("You're done.");
-                Platform.exit();
-              });
-            }
+            checkWins(rock, paper, scissors);
 
           }
 
@@ -802,23 +531,8 @@ public class RockPaperScissorsv4 extends Application {
             choosepaper = true;
 
             if (compchoosepaper) {
-              System.out.println("Tie!");
-              youtie1 = true;
 
-              tie.setOpacity(1.0);
-
-              FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-              tieFade.setNode(tie);
-              tieFade.setFromValue(1.0);
-              tieFade.setToValue(0.0);
-              tieFade.setCycleCount(1);
-              tieFade.setAutoReverse(false);
-              tieFade.play();
-
-              tieFade.setOnFinished(event -> {
-                System.out.println("Game Status: Offline");
-                Platform.exit();
-              });
+              onTie();
 
             } else if (compchooserock) {
               System.out.println("You win one!");
@@ -836,47 +550,7 @@ public class RockPaperScissorsv4 extends Application {
 
 
             checkLosses(rock, paper, scissors);
-            if (win == 1) {
-              System.out.println("won 1");
-              win1.setOpacity(1.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 2) {
-              System.out.println("won 2");
-              win1.setOpacity(0.0);
-              win2.setOpacity(1.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 3) {
-              System.out.println("won 3");
-              win1.setOpacity(0.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(1.0);
-              youwon = true;
-              System.out.println(win);
-              rock.setOpacity(0.0);
-              paper.setOpacity(0.0);
-              scissors.setOpacity(0.0);
-              greatChoice1.setOpacity(0.0);
-              ouch.setOpacity(0.0);
-              pickOne.setOpacity(0.0);
-              nextRound.setOpacity(0.0);
-
-              youWon.setOpacity(1.0);
-              FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-              youWinFade.setNode(youWon);
-              youWinFade.setFromValue(1.0);
-              youWinFade.setToValue(0.0);
-              youWinFade.setCycleCount(1);
-              youWinFade.setAutoReverse(false);
-              youWinFade.play();
-
-              youWinFade.setOnFinished(event -> {
-                System.out.println("You're done.");
-                Platform.exit();
-              });
-            }
+            checkWins(rock, paper, scissors);
 
           }
         };
@@ -894,23 +568,8 @@ public class RockPaperScissorsv4 extends Application {
             choosescissors = true;
 
             if (compchoosescissors) {
-              System.out.println("Tie!");
-              youtie1 = true;
 
-              tie.setOpacity(1.0);
-
-              FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
-              tieFade.setNode(tie);
-              tieFade.setFromValue(1.0);
-              tieFade.setToValue(0.0);
-              tieFade.setCycleCount(1);
-              tieFade.setAutoReverse(false);
-              tieFade.play();
-
-              tieFade.setOnFinished(event -> {
-                System.out.println("Game Status: Offline");
-                Platform.exit();
-              });
+              onTie();
 
             } else if (compchoosepaper) {
               System.out.println("You win one!");
@@ -925,49 +584,9 @@ public class RockPaperScissorsv4 extends Application {
             } else {
               System.out.println("Error: computer chose nothing.");
             }
+
             checkLosses(rock, paper, scissors);
-
-            if (win == 1) {
-              System.out.println("won 1");
-              win1.setOpacity(1.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 2) {
-              System.out.println("won 2");
-              win1.setOpacity(0.0);
-              win2.setOpacity(1.0);
-              win3.setOpacity(0.0);
-            }
-            if (win == 3) {
-              System.out.println("won 3");
-              win1.setOpacity(0.0);
-              win2.setOpacity(0.0);
-              win3.setOpacity(1.0);
-              youwon = true;
-              System.out.println(win);
-              rock.setOpacity(0.0);
-              paper.setOpacity(0.0);
-              scissors.setOpacity(0.0);
-              greatChoice1.setOpacity(0.0);
-              ouch.setOpacity(0.0);
-              pickOne.setOpacity(0.0);
-              nextRound.setOpacity(0.0);
-
-              youWon.setOpacity(1.0);
-              FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
-              youWinFade.setNode(youWon);
-              youWinFade.setFromValue(1.0);
-              youWinFade.setToValue(0.0);
-              youWinFade.setCycleCount(1);
-              youWinFade.setAutoReverse(false);
-              youWinFade.play();
-
-              youWinFade.setOnFinished(event -> {
-                System.out.println("You're done.");
-                Platform.exit();
-              });
-            }
+            checkWins(rock, paper, scissors);
 
           }
         };
@@ -1194,8 +813,109 @@ public class RockPaperScissorsv4 extends Application {
       });
     }
   }
-    //other methods (display game end (win and loss/update score??/countdown message (3,2,1 write it down here and call it up there again and again)) message)
-    public static void main(String args[]) {
-      launch(args);
+
+  public void checkWins(ImageView rock, ImageView paper, ImageView scissors) {
+
+    if (win == 1) {
+      System.out.println("won 1");
+      win1.setOpacity(1.0);
+      win2.setOpacity(0.0);
+      win3.setOpacity(0.0);
+    }
+    if (win == 2) {
+      System.out.println("won 2");
+      win1.setOpacity(0.0);
+      win2.setOpacity(1.0);
+      win3.setOpacity(0.0);
+    }
+    if (win == 3) {
+      System.out.println("won 3");
+      win1.setOpacity(0.0);
+      win2.setOpacity(0.0);
+      win3.setOpacity(1.0);
+      youwon = true;
+      System.out.println(win);
+      rock.setOpacity(0.0);
+      paper.setOpacity(0.0);
+      scissors.setOpacity(0.0);
+      greatChoice1.setOpacity(0.0);
+      ouch.setOpacity(0.0);
+      pickOne.setOpacity(0.0);
+      nextRound.setOpacity(0.0);
+
+      youWon.setOpacity(1.0);
+      FadeTransition youWinFade = new FadeTransition(Duration.millis(2500));
+      youWinFade.setNode(youWon);
+      youWinFade.setFromValue(1.0);
+      youWinFade.setToValue(0.0);
+      youWinFade.setCycleCount(1);
+      youWinFade.setAutoReverse(false);
+      youWinFade.play();
+
+      youWinFade.setOnFinished(event -> {
+        System.out.println("You're done.");
+        Platform.exit();
+      });
     }
   }
+
+  public void onTie() {
+    System.out.println("Tie!");
+    youtie1 = true;
+
+    tie.setOpacity(1.0);
+
+    FadeTransition tieFade = new FadeTransition(Duration.millis(3000));
+    tieFade.setNode(tie);
+    tieFade.setFromValue(1.0);
+    tieFade.setToValue(0.0);
+    tieFade.setCycleCount(1);
+    tieFade.setAutoReverse(false);
+    tieFade.play();
+
+    tieFade.setOnFinished(event -> {
+      System.out.println("Game Status: Offline");
+      Platform.exit();
+    });
+  }
+
+  public void compChoseRock(ImageView comprock) {
+    comprock.setOpacity(1.0);
+
+    FadeTransition compRockFade = new FadeTransition(Duration.millis(2000));
+    compRockFade.setNode(comprock);
+    compRockFade.setFromValue(1.0);
+    compRockFade.setToValue(0.0);
+    compRockFade.setCycleCount(1);
+    compRockFade.setAutoReverse(false);
+    compRockFade.play();
+  }
+
+  public void compChosePaper(ImageView comppaper) {
+    comppaper.setOpacity(1.0);
+
+    FadeTransition compPaperFade = new FadeTransition(Duration.millis(2000));
+    compPaperFade.setNode(comppaper);
+    compPaperFade.setFromValue(1.0);
+    compPaperFade.setToValue(0.0);
+    compPaperFade.setCycleCount(1);
+    compPaperFade.setAutoReverse(false);
+    compPaperFade.play();
+  }
+
+  public void compChoseScissors(ImageView compscissors) {
+    compscissors.setOpacity(1.0);
+
+    FadeTransition compScissorsFade = new FadeTransition(Duration.millis(2000));
+    compScissorsFade.setNode(compscissors);
+    compScissorsFade.setFromValue(1.0);
+    compScissorsFade.setToValue(0.0);
+    compScissorsFade.setCycleCount(1);
+    compScissorsFade.setAutoReverse(false);
+    compScissorsFade.play();
+  }
+  //other methods (display game end (win and loss/update score??/countdown message (3,2,1 write it down here and call it up there again and again)) message)
+  public static void main(String args[]) {
+    launch(args);
+  }
+}
